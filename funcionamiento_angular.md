@@ -15,3 +15,10 @@ En esta sección veremos:
 - LinkedSignal
 - HashRouter
 - Despliegues
+
+para los despliegues es necesario realizar un build:
+
+```bash
+ng build
+```
+
