@@ -23,3 +23,4 @@
 ## Secciones
 
 1. [Typescript](./typescript.md)
+2. [Angular](./angular.md)
