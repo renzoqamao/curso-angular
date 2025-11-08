@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { Character } from "../../interfaces/character.interface";
+import { Character } from "../../../interfaces/character.interface";
 
 @Component({
   selector: 'dragonball-character-list',

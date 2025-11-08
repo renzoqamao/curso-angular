@@ -1,6 +1,6 @@
 import { Component, computed, signal } from "@angular/core";
 import { CharacterList } from "../../components/dragonball/character-list/character-list.component";
-import { Character } from "../../components/interfaces/character.interface";
+import { Character } from "../../interfaces/character.interface";
 import { characterAddComponent } from "../../components/dragonball/character-add/character-add.component";
 
 
