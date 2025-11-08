@@ -20,6 +20,9 @@ export class DragonballSuperPageComponent{
     {id: 2, name : "vegeta", power: 9000}]);
 
 
+    addCharacter(character : Character){
+      this.characters.update((list)=>[...list, character]);
+    }
 
 
 }

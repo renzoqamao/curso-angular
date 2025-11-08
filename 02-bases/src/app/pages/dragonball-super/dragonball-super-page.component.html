@@ -3,7 +3,9 @@
 <!-- txtName es una referencia al input-->
 <section class="row">
   <div class="col-12 col-sm-6">
-    <character-add/>
+    <character-add
+    (newCharacter)="addCharacter($event)"
+    />
   </div>
 
   <div class="col-12 col-sm-6">
