@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'search-page',
+  templateUrl: './search-page.component.html',
+})
+
+export default class SearchPageComponent {
+  constructor() { }
+
+  ngOnInit() { }
+}
