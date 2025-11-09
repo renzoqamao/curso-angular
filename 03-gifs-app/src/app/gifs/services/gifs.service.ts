@@ -16,7 +16,7 @@ Record<string, Gif[]>
 const loadFromLocalStorage= ()=>{
   const gifsFromLocalStorage = localStorage.getItem('gifs') ?? '{}'; // Record<string, Gif[]>
   const gifs = JSON.parse(gifsFromLocalStorage);
-  console.log(gifs);
+  //console.log(gifs);
   return gifs;
 }
 
@@ -31,7 +31,7 @@ export class GifService {
     for(let i=0 ; i< this.trendingGifs().length;i+=3){
       groups.push(this.trendingGifs().slice(i, i+3));
     }
-    console.log({groups: groups})
+    //console.log({groups: groups})
     return groups;
   });
   trendingGifsLoading = signal(true);
@@ -59,7 +59,7 @@ export class GifService {
         const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
         this.trendingGifs.set(gifs);
         this.trendingGifsLoading.set(false);
-        console.log({gifs});
+        //console.log({gifs});
       });
   }
 
