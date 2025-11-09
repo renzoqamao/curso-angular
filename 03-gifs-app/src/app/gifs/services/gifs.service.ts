@@ -43,7 +43,7 @@ export class GifService {
       });
   }
 
-  searchGif(query:string){
+  searchGif(query:string): Observable<Gif[]>{
     return this.http.get<GiphyResponse>(`${ environment.giphyUrl}/gifs/search`,
       {
         params:{
@@ -69,6 +69,10 @@ export class GifService {
       //   const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
       //   console.log({search: gifs});
       // });
+  }
+
+  getHistoryGifs(query:string){
+    return this.searchHistory()[query]??[];
   }
 
 }
