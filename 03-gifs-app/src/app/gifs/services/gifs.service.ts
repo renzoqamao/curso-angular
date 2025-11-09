@@ -41,6 +41,7 @@ export class GifService {
 
   constructor() {
     this.loadTrendingGifs();
+    console.log("servicio gif creado");
   }
 
   saveGifsToLocalStorage = effect(() => {
