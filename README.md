@@ -27,3 +27,4 @@
 3. [funcionamiento de angular](./funcionamiento_angular.md)
 4. [Inicio de proyecto GifApps](./gifapps.md)
 5. [Manejo de estado de la app GifApps](./gifapps_state.md)
+6. [Extendiendo la aplicación GifApps](./gifapps_extend.md)
