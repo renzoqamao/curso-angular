@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CountryListComponent } from '../../components/country-list/country-list.component';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'by-region-page',
@@ -8,4 +9,5 @@ import { CountryListComponent } from '../../components/country-list/country-list
 })
 
 export class ByRegionPageComponent  {
+countries = signal<Country[]>([]);
 }
