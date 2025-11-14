@@ -1,10 +1,11 @@
 @if (countryResource.error()) {
-  <section class="flex flex-col item-center justify-center mt-10">
-    <h1>No se encontró el país</h1>
-    <a href="" class="link-primary">Regresar</a>
-  </section>
+<not-found />
 }
-<h3>Nombre: {{countryResource.value()?.name}}</h3>
-<h3>capital: {{countryResource.value()?.capital}}</h3>
-<h3>Población: {{countryResource.value()?.population}}</h3>
-<img [src]="countryResource.value()?.flagSvg" [alt]="countryResource.value()?.name">
+
+@if (countryResource.isLoading()) {
+  <h1 class="text-3xl">Cargando...</h1>
+}
+
+@if (countryResource.hasValue()) {
+<country-information-page [country]="countryResource.value()!"/>
+}
