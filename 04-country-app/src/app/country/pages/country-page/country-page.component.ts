@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'country-page',
@@ -6,5 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CountryPageComponent {
+
+  countryCode: string = inject(ActivatedRoute).snapshot.params['code'] as string;
+  countryService = inject(CountryService);
+  countryResource = rxResource({
+      params: () => this.countryCode,
+      stream: ({ params }) => {
+        return this.countryService.searchCountryByAlphaCode(params)
+      }
+    })
 
 }

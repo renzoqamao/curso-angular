@@ -1,1 +1,10 @@
-<h1>country page</h1>
+@if (countryResource.error()) {
+  <section class="flex flex-col item-center justify-center mt-10">
+    <h1>No se encontró el país</h1>
+    <a href="" class="link-primary">Regresar</a>
+  </section>
+}
+<h3>Nombre: {{countryResource.value()?.name}}</h3>
+<h3>capital: {{countryResource.value()?.capital}}</h3>
+<h3>Población: {{countryResource.value()?.population}}</h3>
+<img [src]="countryResource.value()?.flagSvg" [alt]="countryResource.value()?.name">
