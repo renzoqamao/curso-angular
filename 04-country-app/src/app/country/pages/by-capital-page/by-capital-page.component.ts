@@ -18,16 +18,16 @@ export class ByCapitalPageComponent {
   router = inject(Router);
 
   queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
-  query = linkedSignal(()=>this.queryParam);
+  query = linkedSignal(() => this.queryParam);
   countryResource = rxResource({
     params: this.query,
     stream: ({ params }) => {
       if (!params) return of([])
-      this.router.navigate(['/country/by-capital'],{
-        queryParams:{
+      this.router.navigate(['/country/by-capital'], {
+        queryParams: {
           query: params
         }
-    });
+      });
       return this.countryService.searchByCapital(params)
     }
   })
