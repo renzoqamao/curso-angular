@@ -29,3 +29,4 @@
 5. [Manejo de estado de la app GifApps](./gifapps_state.md)
 6. [Extendiendo la aplicación GifApps](./gifapps_extend.md)
 7. [Inicio de proyecto CountryApp](./countryapp.md)
+8. [Pipes](./pipes.md)
