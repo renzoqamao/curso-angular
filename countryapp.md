@@ -19,3 +19,12 @@ Se utiliza:
 - Reutilización de componentes
 - Peticiones http
 - Operadores de RXJS
+
+
+## Memoria
+
+- Caché
+- Router
+- QueryParameters
+- Configuraciones
+- Debounce
