@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
-import { I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe } from '@angular/common';
+import { AsyncPipe, I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe } from '@angular/common';
+import { interval, map, tap } from 'rxjs';
 
 const client1 = {
   name: 'fernando',
@@ -18,7 +19,7 @@ const client2 = {
 
 @Component({
   selector: 'app-uncommon-page.component',
-  imports: [CardComponent, I18nSelectPipe, I18nPluralPipe, SlicePipe, JsonPipe, KeyValuePipe],
+  imports: [CardComponent, I18nSelectPipe, I18nPluralPipe, SlicePipe, JsonPipe, KeyValuePipe, AsyncPipe],
   templateUrl: './uncommon-page.component.html',
 })
 export default class UncommonPageComponent {
@@ -38,23 +39,36 @@ export default class UncommonPageComponent {
   }
 
   // I18n Plural
-  clients = signal(['Maria', 'Pedro', 'Fernando','Melissa']);
-  clientsMap= signal({
+  clients = signal(['Maria', 'Pedro', 'Fernando', 'Melissa']);
+  clientsMap = signal({
     '=0': 'no tenemos ningún cliente esperando',
     '=1': 'tenemos un cliente esperando',
     '=2': ' tenemos un par de clientes esperando',
-    other : 'tenemos # clientes esperando'
+    other: 'tenemos # clientes esperando'
   });
-  deleteClient(){
-    this.clients.update((prev)=>prev.slice(1));
+  deleteClient() {
+    this.clients.update((prev) => prev.slice(1));
   }
 
   // KeyValuePipe
   profile = {
-    name : 'Fernando',
-    age : 36,
-    address : 'Ottawa, Canadá'
+    name: 'Fernando',
+    age: 36,
+    address: 'Ottawa, Canadá'
   }
 
+  // Async Pipe
+  promiseValue: Promise<string> = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // reject('Tenemos un error en la data');
+      resolve('Tenemos data en la promesa.');
+      console.log('Promesa finalizada');
+    }, 3500);
+  });
+
+   myObservableTimer = interval(2000).pipe(
+    map((value) => value + 1),
+    tap((value) => console.log('tap:', value))
+  );
 
 }
