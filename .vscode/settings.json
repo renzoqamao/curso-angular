@@ -1,3 +1,12 @@
 {
-    "angular-schematics.angularDisableProjectPathCheck": true
+    "angular-schematics.angularDisableProjectPathCheck": true,
+    "angular-schematics.schematicsDefaultOptions": {
+        "angular-*": {
+            "externalTemplate": true,
+            "skipStyle": true
+        },
+        "angular-component": {
+            "skipChangeDetectionOnPush": true
+        }
+    }
 }

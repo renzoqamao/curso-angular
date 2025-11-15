@@ -17,7 +17,7 @@ export const routes: Routes = [
     loadComponent : ()=> import('./pages/uncommon-page/uncommon-page.component')
   },
   {
-    path:'basic',
+    path:'custom',
     title: 'Custom Pipes',
     loadComponent : ()=> import('./pages/custom-page/custom-page.component')
   },
