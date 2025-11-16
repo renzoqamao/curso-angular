@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormUtils } from '../../../utils/form-utils';
 
 @Component({
   selector: 'app-basic-page',
@@ -10,6 +11,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 export class BasicPageComponent {
 
   fb = inject(FormBuilder);
+  formUtils = FormUtils;
 
   myForm = this.fb.group({
     name: ['',
@@ -29,14 +31,14 @@ export class BasicPageComponent {
     inStorage : new FormControl(0),
   });*/
 
-  isValidField(fieldName: keyof typeof this.myForm.controls): boolean | null {
+  /* isValidField(fieldName: keyof typeof this.myForm.controls): boolean | null {
      return (
        this.myForm.controls[fieldName].errors &&
        this.myForm.controls[fieldName].touched
      );
-   }
+   } */
 
-   getFieldError(fieldName: keyof typeof this.myForm.controls): string | null {
+   /* getFieldError(fieldName: keyof typeof this.myForm.controls): string | null {
     if (!this.myForm.controls[fieldName]) return null;
 
     const errors = this.myForm.controls[fieldName].errors ?? {};
@@ -55,7 +57,7 @@ export class BasicPageComponent {
     }
 
     return null;
-  }
+  } */
 
   onSave(){
     if(this.myForm.invalid){
