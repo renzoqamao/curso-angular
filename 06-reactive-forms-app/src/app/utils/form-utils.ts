@@ -36,6 +36,8 @@ export class FormUtils{
           return 'Error en patrón contra expresión regular para correo'
         case 'emailTaken':
           return  `El correo electronico ya esta siendo usado por otro usuario`;
+        case 'noStrider':
+          return `No se puede usar el username de strider en la app`;
         default:
           return `Error de validación no controlado ${key}`;
       }
@@ -81,5 +83,10 @@ export class FormUtils{
     const formValue = control.value;
     if(formValue==='hola@mundo.com') return {emailTaken:true};
     return null;
+  }
+
+  static notStrider(control: AbstractControl): ValidationErrors|null {
+    const value = control.value;
+    return value ==='strider'? {noStrider : true}: null;
   }
 }
