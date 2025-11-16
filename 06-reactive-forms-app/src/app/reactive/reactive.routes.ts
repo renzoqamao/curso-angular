@@ -7,7 +7,7 @@ export const reactiveRoutes : Routes =[
   {path: '', children:[
     {path: 'basic', title: 'Básicos', component: BasicPageComponent},
     {path: 'dynamic', title: 'Dinámicos', component: DynamicPageComponent},
-    {path: 'swithces', title: 'Switches', component: SwitchesPageComponent},
+    {path: 'switches', title: 'Switches', component: SwitchesPageComponent},
     {path: '**', redirectTo: 'basic'}
   ]}
 ]
