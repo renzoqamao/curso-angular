@@ -14,7 +14,7 @@ export default class RegisterPageComponent {
 
   myForm = this.fb.group({
     name: ['', [Validators.required,Validators.pattern(this.formUtils.namePattern)]],
-    email: ['', [Validators.required, Validators.pattern(this.formUtils.emailPattern)]],
+    email: ['', [Validators.required, Validators.pattern(this.formUtils.emailPattern)],[this.formUtils.checkingServerResponse]],
     username: ['',[Validators.required, Validators.pattern(this.formUtils.notOnlySpacesPattern)]],
     password : ['', [Validators.required, Validators.minLength(6)]],
     password2: ['', Validators.required],
