@@ -16,7 +16,8 @@
                            formControlName="name">
                     @if (formUtils.isValidField(myForm, 'name')) {
                       <span class="form-text text-danger">
-                        {{formUtils.getFieldError(myForm, 'name')}}
+                        El campo debe tener nombre y apellido
+                        <!-- {{formUtils.getFieldError(myForm, 'name')}} -->
                     </span>
                     }
 
