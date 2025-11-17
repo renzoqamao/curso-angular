@@ -32,3 +32,4 @@
 8. [Pipes](./pipes.md)
 9. [formulario](./angular-form.md)
 10. [lifecycle hooks](./lifecycle-hooks.md)
+11. [Mapas](./maps.md)
