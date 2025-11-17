@@ -26,10 +26,12 @@
       <label class="form-label">País:</label>
       <select formControlName="country" class="form-control">
         <option value="">-- Seleccione País --</option>
+        @for (country of countriesByRegion(); track country.cca3) {
+          <option [value]="country.cca3">
+          {{ country.name.common }}
+        </option>
+        }
 
-        <!-- <option [value]="country.cca3">
-          {{ country.name }}
-        </option> -->
 
       </select>
     </div>
@@ -55,7 +57,8 @@
 </form>
 
 <h3>Formulario</h3>
+
+<p>is form valid: {{ myForm.valid }}</p>
 <code>
-  <!-- {{ 'myForm.value' | json }} -->
+ {{ myForm.value | json }}
 </code>
-<p>is form valid: {{ 'myForm.valid' }}</p>
