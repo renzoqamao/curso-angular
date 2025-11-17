@@ -1,4 +1,5 @@
-import { afterNextRender, Component, effect,afterEveryRender } from '@angular/core';
+import { afterNextRender, Component, effect,afterEveryRender, signal } from '@angular/core';
+import { TitleComponent } from '../../components/title/title.component';
 
 const log = (...messages: string[]) => {
   console.log(
@@ -8,10 +9,31 @@ const log = (...messages: string[]) => {
 };
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [TitleComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
+
+  traditionalProperty = 'Renzo';
+  signalProperty = signal('Renzo Signal');
+
+  constructor() {
+    log('Constructor llamado');
+    // setTimeout(() => { // cuando activo  provideZonelessChangeDetection
+    //   this.traditionalProperty = 'Renato;
+    //   this.signalProperty.set('Renato');
+    // }, 2000);
+  }
+
+
+  changeTraditional() {
+    this.traditionalProperty = 'Fernando Herrera';
+  }
+
+  changeSignal() {
+    this.signalProperty.set('Fernando Herrera');
+  }
+
   basicEffect = effect((onCleanup) => {
     log('effect', 'Disparar efectos secundarios');
 
