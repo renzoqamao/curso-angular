@@ -31,3 +31,4 @@
 7. [Inicio de proyecto CountryApp](./countryapp.md)
 8. [Pipes](./pipes.md)
 9. [formulario](./angular-form.md)
+10. [lifecycle hooks](./lifecycle-hooks.md)
