@@ -1,8 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CountryService } from '../../services/country.service';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-country-page',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './country-page.component.html',
 })
-export class CountryPageComponent { }
+export class CountryPageComponent {
+  fb = inject(FormBuilder);
+  countryService = inject(CountryService);
+  regions =signal(this.countryService.regions);
+  contriesByRegion = signal<Country[]>([]);
+  borders = signal<Country[]>([]);
+
+  myForm = this.fb.group({
+    region:['', Validators.required],
+    country:['', Validators.required],
+    border:['', Validators.required]
+  })
+ }
