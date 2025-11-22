@@ -17,7 +17,7 @@ export class HomePageComponent {
     params : ()=>({}),
     stream:({params})=> {
       return this.productService.getProducts({
-        limit:1,
+        limit:10,
         gender : 'women',
       });
     }
