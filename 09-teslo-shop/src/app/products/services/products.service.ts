@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ProductsResponse } from '@products/interfaces/product.interface';
+import { Product, ProductsResponse } from '@products/interfaces/product.interface';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
@@ -25,5 +25,9 @@ export class ProductsService {
         gender: gender
       }})
     .pipe(tap( (resp)=> console.log(resp)))
+  }
+
+  getProductByIdSlug(idSlug : string): Observable<Product>{
+    return this.http.get<Product>(`${baseUrl}/products/${idSlug}`);
   }
 }
