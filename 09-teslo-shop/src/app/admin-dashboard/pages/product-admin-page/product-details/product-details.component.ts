@@ -87,14 +87,21 @@ export class ProductDetailsComponent implements OnInit {
     };
 
     if (this.product().id === 'new') {
-      this.productsService.createProduct(productLike).subscribe( product =>
-      {
-        console.log(product)
-      }
+      // Crear producto
+      const product = await firstValueFrom(
+        this.productsService.createProduct(productLike)
       );
-      this.router.navigate(['/admin/products', this.product().id]);
+
+      this.router.navigate(['/admin/products', product.id]);
     } else {
-      this.productsService.updateProduct(this.product().id, productLike).subscribe((producto) => { console.log('producto actualizado') });
+      await firstValueFrom(
+        this.productsService.updateProduct(this.product().id, productLike)
+      );
     }
+
+    this.wasSaved.set(true);
+    setTimeout(() => {
+      this.wasSaved.set(false);
+    }, 3000);
   }
 }
