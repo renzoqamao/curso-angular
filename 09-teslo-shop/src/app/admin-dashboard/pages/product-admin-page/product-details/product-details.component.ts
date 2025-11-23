@@ -16,7 +16,7 @@ import { FormErrorLabelComponent } from '@shared/component/form-error-label/form
     ProductCarouselComponent,
     ReactiveFormsModule,
     FormErrorLabelComponent,
-],
+  ],
   templateUrl: './product-details.component.html',
 })
 export class ProductDetailsComponent implements OnInit {
@@ -86,7 +86,15 @@ export class ProductDetailsComponent implements OnInit {
           .map((tag) => tag.trim()) ?? [],
     };
 
-
-    this.productsService.updateProduct(this.product().id, productLike).subscribe((producto)=> {console.log('producto actualizado')});
+    if (this.product().id === 'new') {
+      this.productsService.createProduct(productLike).subscribe( product =>
+      {
+        console.log(product)
+      }
+      );
+      this.router.navigate(['/admin/products', this.product().id]);
+    } else {
+      this.productsService.updateProduct(this.product().id, productLike).subscribe((producto) => { console.log('producto actualizado') });
     }
+  }
 }

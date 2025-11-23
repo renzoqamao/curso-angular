@@ -1,56 +1,83 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Product, ProductsResponse } from '@products/interfaces/product.interface';
+import { User } from '@auth/interfaces/user.interface';
+import { Gender, Product, ProductsResponse } from '@products/interfaces/product.interface';
 import { Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 const baseUrl = environment.baseUrl;
 
-interface Options{
+interface Options {
   limit?: number;
   offset?: number;
   gender?: string;
 }
 
-@Injectable({providedIn: 'root'})
+const emptyProduct: Product = {
+  id: 'new',
+  title: '',
+  price: 0,
+  description: '',
+  slug: '',
+  stock: 0,
+  sizes: [],
+  gender: Gender.Men,
+  tags: [],
+  images: [],
+  user: {} as User,
+};
+
+@Injectable({ providedIn: 'root' })
 export class ProductsService {
   private http = inject(HttpClient);
-  private productsCache = new Map<string,ProductsResponse>();
-  private productCache = new Map<string,Product>();
+  private productsCache = new Map<string, ProductsResponse>();
+  private productCache = new Map<string, Product>();
 
-  getProducts(options: Options):Observable<ProductsResponse>{
-    const {limit=9, offset=0, gender=''} = options;
+  getProducts(options: Options): Observable<ProductsResponse> {
+    const { limit = 9, offset = 0, gender = '' } = options;
     const key = `${limit}-${offset}-${gender}`;
-    if(this.productsCache.has(key)){
+    if (this.productsCache.has(key)) {
       return of(this.productsCache.get(key)!);
     }
 
     return this.http.get<ProductsResponse>(`${baseUrl}/products`,
-      {params:{
-        limit : limit,
-        offset: offset,
-        gender: gender
-      }})
-    .pipe(tap( (resp)=> console.log(resp)),tap( (resp)=>this.productsCache.set(key,resp)))
+      {
+        params: {
+          limit: limit,
+          offset: offset,
+          gender: gender
+        }
+      })
+      .pipe(tap((resp) => console.log(resp)), tap((resp) => this.productsCache.set(key, resp)))
   }
 
-  getProductByIdSlug(idSlug : string): Observable<Product>{
-    const key =`prod-${idSlug}`;
-    if(this.productCache.has(key)){
+  getProductByIdSlug(idSlug: string): Observable<Product> {
+    const key = `prod-${idSlug}`;
+    if (this.productCache.has(key)) {
       return of(this.productCache.get(key)!);
     }
     return this.http.get<Product>(`${baseUrl}/products/${idSlug}`)
-    .pipe(tap( (prod)=>this.productCache.set(key,prod)));
+      .pipe(tap((prod) => this.productCache.set(key, prod)));
   }
 
   getProductById(id: string): Observable<Product> {
-   if (this.productCache.has(id)) {
+    if (id === 'new') {
+      return of(emptyProduct);
+    }
+
+    if (this.productCache.has(id)) {
       return of(this.productCache.get(id)!);
     }
 
     return this.http
       .get<Product>(`${baseUrl}/products/${id}`)
       .pipe(tap((product) => this.productCache.set(id, product)));
+  }
+
+  createProduct(productLike: Partial<Product>): Observable<Product> {
+    return this.http
+      .post<Product>(`${baseUrl}/products`, productLike)
+      .pipe(tap((product) => this.updateProductCache(product)));
   }
 
   updateProduct(
