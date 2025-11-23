@@ -3,8 +3,8 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductsService } from '@products/services/products.service';
 import { RouterLink } from '@angular/router';
 import { ProductTableComponent } from '@products/components/product-table/product-table.component';
-import { PaginationComponent } from '@/sharedcomponent/pagination/pagination.component';
-import { PaginationService } from '@/sharedcomponent/pagination/pagination.service';
+import { PaginationComponent } from '@shared/component/pagination/pagination.component';
+import { PaginationService } from '@shared/component/pagination/pagination.service';
 
 @Component({
   selector: 'app-products-admin-page',

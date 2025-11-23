@@ -3,10 +3,11 @@ import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { Component, inject } from '@angular/core';
 import { ProductCardComponent } from '@products/components/product-card/product-card.component';
 import { ProductsService } from '@products/services/products.service';
-import { PaginationComponent } from "@/sharedcomponent/pagination/pagination.component";
+import { PaginationComponent } from '@shared/component/pagination/pagination.component';
+import { PaginationService } from '@shared/component/pagination/pagination.service';
+
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
-import { PaginationService } from '@/sharedcomponent/pagination/pagination.service';
 //import { ProductCardComponent } from '../../../products/components/product-card/product-card.component';
 
 @Component({

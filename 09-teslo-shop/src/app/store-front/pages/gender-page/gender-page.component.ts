@@ -3,9 +3,9 @@ import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { ProductCardComponent } from '@products/components/product-card/product-card.component';
 import { ProductsService } from '@products/services/products.service';
+import { PaginationComponent } from '@shared/component/pagination/pagination.component';
+import { PaginationService } from '@shared/component/pagination/pagination.service';
 import { map } from 'rxjs';
-import { PaginationComponent } from "@/sharedcomponent/pagination/pagination.component";
-import { PaginationService } from '@/sharedcomponent/pagination/pagination.service';
 
 @Component({
   selector: 'app-gender-page',
